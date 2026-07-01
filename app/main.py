@@ -7,14 +7,31 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.config import get_settings
+from app.rate_limit import InMemoryRateLimiter
 from app.schemas import AlertRequest, WhatsAppWebhookPayload
 from app.storage import AlertStore
 
 app = FastAPI(title="FloodWatch Ghana", version="0.1.0")
 logger = logging.getLogger("floodwatch")
 logger.setLevel(logging.INFO)
+
+rate_limiter = InMemoryRateLimiter(max_requests=60, window_seconds=60)
+
+
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Referrer-Policy"] = "no-referrer"
+        response.headers["Permissions-Policy"] = "geolocation=(), microphone=()"
+        return response
+
+
+app.add_middleware(SecurityHeadersMiddleware)
 
 
 def get_store() -> AlertStore:
@@ -34,6 +51,9 @@ def readyz() -> dict[str, str]:
 
 @app.post("/alerts")
 def submit_alert(payload: AlertRequest) -> dict[str, str]:
+    settings = get_settings()
+    if settings.environment != "development" and not rate_limiter.allow("alerts"):
+        return JSONResponse(status_code=429, content={"status": "rate_limited"})
     record = {
         "message": payload.message,
         "location": payload.location,
@@ -46,6 +66,8 @@ def submit_alert(payload: AlertRequest) -> dict[str, str]:
 
 @app.post("/webhooks/whatsapp")
 async def whatsapp_webhook(request: Request) -> dict[str, str]:
+    if not rate_limiter.allow(request.client.host if request.client else "unknown"):
+        return JSONResponse(status_code=429, content={"status": "rate_limited"})
     signature = request.headers.get("X-WhatsApp-Signature", "")
     if not signature:
         return JSONResponse(status_code=400, content={"status": "missing_signature"})
