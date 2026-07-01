@@ -12,7 +12,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from app.config import get_settings
 from app.rate_limit import InMemoryRateLimiter
 from app.schemas import AlertRequest, WhatsAppWebhookPayload
-from app.storage import AlertStore
+from app.storage import AlertStore, SupabaseAlertStore
 
 app = FastAPI(title="FloodWatch Ghana", version="0.1.0")
 logger = logging.getLogger("floodwatch")
@@ -36,6 +36,8 @@ app.add_middleware(SecurityHeadersMiddleware)
 
 def get_store() -> AlertStore:
     settings = get_settings()
+    if settings.public_beta and settings.environment != "development":
+        return SupabaseAlertStore()
     return AlertStore(settings.alert_store_path)
 
 
@@ -51,7 +53,7 @@ def readyz() -> dict[str, str]:
     ready = True
     if settings.public_beta and not settings.whats_app_app_secret:
         ready = False
-    if not store.path.exists():
+    if settings.public_beta and not store.path.exists() and not isinstance(store, SupabaseAlertStore):
         ready = False
     return {"status": "ready" if ready else "not_ready"}
 
