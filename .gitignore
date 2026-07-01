@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+⁶# 1. Frontend - Next.js + Leaflet map
+npm create next-app@latest frontend --ts --tailwind --eslint --app --no-src-dir
+cd frontend
+npm install leaflet @types/leaflet react-leaflet
+
+# 2. Backend - FastAPI starter 
+cd../
+mkdir backend && cd backend
+python -m venv.venv
+source.venv/bin/activate # on mobile use:.venv\Scripts\activate
+pip install fastapi uvicorn[standard] python-multipart supabase
+
+
+
