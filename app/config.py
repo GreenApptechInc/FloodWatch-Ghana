@@ -7,6 +7,7 @@ class Settings(BaseSettings):
 
     app_name: str = "FloodWatch Ghana"
     environment: str = "development"
+    public_beta: bool = False
     whats_app_app_secret: str = Field(
         default="",
         validation_alias=AliasChoices("WHATSAPP_APP_SECRET", "WHATS_APP_APP_SECRET"),

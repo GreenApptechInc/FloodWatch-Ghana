@@ -46,7 +46,14 @@ def healthz() -> dict[str, str]:
 
 @app.get("/readyz")
 def readyz() -> dict[str, str]:
-    return {"status": "ready"}
+    settings = get_settings()
+    store = get_store()
+    ready = True
+    if settings.public_beta and not settings.whats_app_app_secret:
+        ready = False
+    if not store.path.exists():
+        ready = False
+    return {"status": "ready" if ready else "not_ready"}
 
 
 @app.post("/alerts")
