@@ -1,0 +1,124 @@
+{
+  "project": "FloodWatch-Ghana",
+  "version": "mvp-v1",
+  "alert_templates": {
+    "LOW": "flood_all_clear",
+    "MEDIUM": "flood_watch_medium",
+    "HIGH": "flood_alert_high",
+    "CRITICAL": "flood_emergency"
+  },
+  "monitoring_points": [
+    {
+      "constituency": "Ablekuma Central",
+      "point_id": "Odaw_Kaneshie_Bridge",
+      "location_name": "Odaw River - Kaneshie Bridge",
+      "coordinates": [5.5502, -0.2315],
+      "thresholds_m": {"normal": 0.5, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Ablekuma North",
+      "point_id": "Darkuman_Drain",
+      "location_name": "Darkuman Main Drain",
+      "coordinates": [5.5731, -0.2568],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Ablekuma South",
+      "point_id": "Korle_Lagoon_Chorkor",
+      "location_name": "Korle Lagoon - Chorkor",
+      "coordinates": [5.5441, -0.2349],
+      "thresholds_m": {"normal": 0.5, "alert": 1.2, "danger": 2.0, "extreme": 2.8}
+    },
+    {
+      "constituency": "Ablekuma West",
+      "point_id": "Dansoman_Drain",
+      "location_name": "Dansoman Roundabout Drain",
+      "coordinates": [5.5467, -0.2665],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Accra Central",
+      "point_id": "Odaw_RingRoad",
+      "location_name": "Odaw River - Ring Road Central",
+      "coordinates": [5.558, -0.212],
+      "thresholds_m": {"normal": 0.5, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Ayawaso Central",
+      "point_id": "Alajo_Drain",
+      "location_name": "Alajo Drain",
+      "coordinates": [5.587, -0.204],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Ayawaso East",
+      "point_id": "Nima_Drain",
+      "location_name": "Nima Market Drain",
+      "coordinates": [5.581, -0.184],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Ayawaso North",
+      "point_id": "Achimota_Forest_Drain",
+      "location_name": "Achimota Forest Drain",
+      "coordinates": [5.616, -0.241],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Ayawaso West Wuogon",
+      "point_id": "Dzorwulu_Drain",
+      "location_name": "Dzorwulu Traffic Light Drain",
+      "coordinates": [5.603, -0.194],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Bortianor Ngleshie Amanfro",
+      "point_id": "Weija_Dam_Spillway",
+      "location_name": "Weija Dam Spillway",
+      "coordinates": [5.557, -0.311],
+      "thresholds_m": {"normal": 10.0, "alert": 13.0, "danger": 14.5, "extreme": 15.5}
+    },
+    {
+      "constituency": "Dome Kwabenya",
+      "point_id": "Dome_Drain",
+      "location_name": "Dome Pillar 2 Drain",
+      "coordinates": [5.65, -0.217],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Klottey Korle",
+      "point_id": "Klottey_Drain",
+      "location_name": "Osu Oxford Street Drain",
+      "coordinates": [5.556, -0.173],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Ledzokuku",
+      "point_id": "Teshie_Drain",
+      "location_name": "Teshie Main Drain",
+      "coordinates": [5.58, -0.109],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Madina",
+      "point_id": "Onyasia_River_Madina",
+      "location_name": "Onyasia River - Ritz Junction",
+      "coordinates": [5.674, -0.168],
+      "thresholds_m": {"normal": 0.5, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Okaikwei Central",
+      "point_id": "Abeka_Drain",
+      "location_name": "Abeka Junction Drain",
+      "coordinates": [5.591, -0.233],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    },
+    {
+      "constituency": "Okaikwei South",
+      "point_id": "Bubiashie_Drain",
+      "location_name": "Bubiashie Main Drain",
+      "coordinates": [5.578, -0.223],
+      "thresholds_m": {"normal": 0.3, "alert": 1.0, "danger": 1.8, "extreme": 2.5}
+    }
+  ]
+}

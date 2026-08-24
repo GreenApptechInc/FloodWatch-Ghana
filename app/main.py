@@ -11,7 +11,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.config import get_settings
 from app.rate_limit import InMemoryRateLimiter
-from app.schemas import AlertRequest, WhatsAppWebhookPayload
+from app.monitoring import AlertLevel, load_monitoring_config
+from app.schemas import AlertRequest, VolunteerReport, WhatsAppWebhookPayload
 from app.storage import AlertStore, SupabaseAlertStore
 
 app = FastAPI(title="FloodWatch Ghana", version="0.1.0")
@@ -71,6 +72,42 @@ def submit_alert(payload: AlertRequest) -> dict[str, str]:
     get_store().append(record)
     logger.info("alert accepted", extra={"alert_message": payload.message, "location": payload.location})
     return {"status": "accepted", "message": payload.message, "location": payload.location}
+
+
+@app.post("/reports")
+def submit_volunteer_report(payload: VolunteerReport) -> dict[str, str]:
+    settings = get_settings()
+    if settings.environment != "development" and not rate_limiter.allow("reports"):
+        return JSONResponse(status_code=429, content={"status": "rate_limited"})
+
+    config = load_monitoring_config()
+    constituencies = {point.constituency for point in config.monitoring_points}
+    if payload.constituency not in constituencies:
+        return JSONResponse(status_code=422, content={"detail": "unknown constituency"})
+
+    level_by_choice = {
+        "0-0.3m": AlertLevel.LOW,
+        "0.3-1.0m": AlertLevel.MEDIUM,
+        "1.0-1.8m": AlertLevel.HIGH,
+        "1.8m+": AlertLevel.CRITICAL,
+    }
+    alert_level = level_by_choice[payload.estimated_water_level]
+    record = {
+        "type": "volunteer_report",
+        "constituency": payload.constituency,
+        "location": payload.location,
+        "estimated_water_level": payload.estimated_water_level,
+        "water_trend": payload.water_trend,
+        "photo_url": payload.photo_url,
+        "whatsapp_number": payload.whatsapp_number,
+        "notes": payload.notes,
+        "alert_level": alert_level,
+        "alert_template": config.alert_templates[alert_level],
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    get_store().append(record)
+    logger.info("volunteer report accepted", extra={"constituency": payload.constituency, "alert_level": alert_level})
+    return {"status": "accepted", "alert_level": alert_level}
 
 
 @app.post("/webhooks/whatsapp")
