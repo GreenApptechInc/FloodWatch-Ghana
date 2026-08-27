@@ -10,7 +10,7 @@ Delivering real-time WhatsApp alerts to help vulnerable communities evacuate and
 The Problem:
 Over 300,000 Ghanaians are affected by floods every year. In Accra, warnings from NADMO and GMet often arrive too late for communities in low-lying areas. The gap between data and action costs lives and property.
 
-The Solution
+The Solution:
 *FloodWatch* combines real-time weather + community data to send instant flood alerts via WhatsApp. 
 - *Monitor*: Rainfall, river levels, and GMet forecasts
 - *Alert*: Instant English WhatsApp messages with risk level + safe actions
