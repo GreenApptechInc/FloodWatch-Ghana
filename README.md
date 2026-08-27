@@ -13,7 +13,7 @@ Over 300,000 Ghanaians are affected by floods every year. In Accra, warnings fro
 The Solution:
 *FloodWatch* combines real-time weather + community data to send instant flood alerts via WhatsApp. 
 - *Monitor*: Rainfall, river levels, and GMet forecasts
-- *Alert*: Instant English WhatsApp messages with risk level + safe actions
+- *Alert*: Instant WhatsApp messages with risk level + safe actions
 - *Report*: Community members can report flooding in 2 clicks to improve local accuracy
 - *Accessible*: Works without smartphone data. No app download needed.
 
