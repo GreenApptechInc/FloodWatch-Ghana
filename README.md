@@ -17,7 +17,7 @@ The Solution:
 - *Report*: Community members can report flooding in 2 clicks to improve local accuracy
 - *Accessible*: Works without smartphone data. No app download needed.
 
-Why This Matters Now
+Why This Matters Now:
 Accra’s floods are getting more frequent. With climate change, early warning is the most cost-effective way to reduce loss of life. FloodWatch puts that warning directly in people’s hands.
 
 Tech Stack
