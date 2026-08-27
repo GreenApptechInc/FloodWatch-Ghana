@@ -52,7 +52,7 @@ Open to collaborators, mentors, NGOs, and grant partners.
 
 Contact
 *Founder*: Patrick Akyea-Addo  
-*Email*: patrakyaddo@gmail.com  
+*Email*: akyeaaddopatrick@gmail.com  
 *Location*: Accra, Ghana
 
 License
