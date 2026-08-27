@@ -7,7 +7,7 @@ _Founded by Patrick Akyea-Addo_
 
 Delivering real-time WhatsApp alerts to help vulnerable communities evacuate and stay safe before floods hit.
 
-The Problem
+The Problem:
 Over 300,000 Ghanaians are affected by floods every year. In Accra, warnings from NADMO and GMet often arrive too late for communities in low-lying areas. The gap between data and action costs lives and property.
 
 The Solution
