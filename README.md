@@ -34,7 +34,7 @@ Tech Stack
 *Built by:* Solo Founder with passion for tackling climate related pain-points via AI.
 
 About the Founder
-*Patrick Akyea-Addo* - Self-taught AI software creator, Accra, Ghana  
+*Patrick Akyea-Addo* - Self-taught AI software creator, Accra, Ghana.  
 I built FloodWatch after seeing floods disrupt my own community. My interest is in using tech to build open-source AI Systems to solve local problems. I’m currently operating FloodWatch as an independent project and seeking grants, credits, and partnerships to scale to 5 zones across Accra by end of 2026.
 
 Roadmap 2026
